@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegulaDerecho - Tus Derechos en Servicios Públicos</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            DEFAULT: '#111827',
+                            light: '#1f2937'
+                        },
+                        gold: {
+                            DEFAULT: '#c09c64',
+                            light: '#d1b384',
+                            dark: '#a88651'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for chat */
+        .chat-scroll::-webkit-scrollbar { width: 6px; }
+        .chat-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .chat-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .chat-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Smooth transitions */
+        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+        
+        /* FAQ Details */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 antialiased overflow-x-hidden">
+
+    <div class="bg-navy text-gray-300 text-xs sm:text-sm py-2 px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center z-50 relative">
+        <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+            <span><i class="fa-regular fa-clock text-gold mr-1"></i> Lunes - Domingo: 24/7</span>
+            <span class="hidden sm:inline">|</span>
+            <span><i class="fa-solid fa-phone text-gold mr-1"></i> +51 800 123 456</span>
+        </div>
+        <div class="flex space-x-3 text-sm">
+            <a href="#" class="hover:text-gold transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-gold transition-colors"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="hover:text-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+    </div>
+
+    <nav class="bg-white shadow-md sticky top-0 z-40 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <i class="fa-solid fa-scale-balanced text-3xl text-gold mr-3"></i>
+                    <span class="font-bold text-2xl text-navy tracking-tight">Regula<span class="text-gold">Derecho</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center font-semibold text-sm text-navy">
+                    <a href="#" class="hover:text-gold transition-colors text-gold">Inicio</a>
+                    <a href="#servicios" class="hover:text-gold transition-colors">Servicios Públicos</a>
+                    <a href="#faq" class="hover:text-gold transition-colors">Dudas Frecuentes</a>
+                    <a href="#" class="hover:text-gold transition-colors">Blog</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button onclick="toggleChat()" class="bg-gold hover:bg-gold-dark text-white px-6 py-2.5 rounded-sm font-semibold transition-colors shadow-lg shadow-gold/30 flex items-center gap-2">
+                        <i class="fa-solid fa-file-invoice-dollar"></i> Hablar con Asesor
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-navy hover:text-gold text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-[80vh] min-h-[600px] flex items-center justify-center">
+        <!-- Background Image (Bills and Calculator) -->
+        <div class="absolute inset-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-navy/85"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+            <div class="mb-4 inline-block bg-gold/20 border border-gold/50 text-gold px-4 py-1 rounded-full text-sm font-semibold tracking-wide backdrop-blur-sm">
+                ASESORÍA REGULATORIA AUTOMATIZADA
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                Defiende tus Derechos en <br> <span class="text-gold">Servicios Públicos</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
+                Tu asistente virtual 24/7 para analizar recibos, redactar reclamos y resolver dudas sobre tus derechos como consumidor al instante.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="toggleChat()" class="bg-gold hover:bg-gold-dark text-white px-8 py-4 rounded-sm font-bold text-lg transition-colors shadow-xl shadow-gold/20 flex items-center justify-center gap-2">
+                    Iniciar Análisis Gratuito <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <a href="https://www.indecopi.gob.pe/documents/20182/143803/C%C3%B3digoDProtecci%C3%B3nyDefensaDelConsumidor.pdf" target="_blank" rel="noopener noreferrer" class="bg-transparent border border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold text-lg transition-colors flex items-center justify-center">
+                    Conoce tus Derechos <i class="fa-solid fa-external-link-alt ml-2 text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="servicios" class="bg-navy py-12 relative z-20 border-b-4 border-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center group cursor-pointer" onclick="triggerChatCategory('Energía y Luz')">
+                    <div class="w-16 h-16 rounded-full bg-navy-light border border-gray-700 flex items-center justify-center mb-4 group-hover:border-gold transition-colors">
+                        <i class="fa-solid fa-bolt text-2xl text-gold group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-lg">Energía y Luz</h3>
+                    <p class="text-xs text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">OSINERGMIN</p>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer" onclick="triggerChatCategory('Agua y Saneamiento')">
+                    <div class="w-16 h-16 rounded-full bg-navy-light border border-gray-700 flex items-center justify-center mb-4 group-hover:border-gold transition-colors">
+                        <i class="fa-solid fa-faucet-drip text-2xl text-gold group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-lg">Agua y Saneamiento</h3>
+                    <p class="text-xs text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">SUNASS</p>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer" onclick="triggerChatCategory('Telecomunicaciones')">
+                    <div class="w-16 h-16 rounded-full bg-navy-light border border-gray-700 flex items-center justify-center mb-4 group-hover:border-gold transition-colors">
+                        <i class="fa-solid fa-wifi text-2xl text-gold group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-lg">Telecomunicaciones</h3>
+                    <p class="text-xs text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">OSIPTEL</p>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer" onclick="triggerChatCategory('Protección al Consumidor')">
+                    <div class="w-16 h-16 rounded-full bg-navy-light border border-gray-700 flex items-center justify-center mb-4 group-hover:border-gold transition-colors">
+                        <i class="fa-solid fa-shield-halved text-2xl text-gold group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-lg">Protección al Consumidor</h3>
+                    <p class="text-xs text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">INDECOPI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">
+                    Soluciones Rápidas para tus <span class="text-gold">Derechos</span>
+                </h2>
+                <div class="w-20 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Nuestro sistema está entrenado con la normativa peruana vigente para ofrecerte respuestas precisas y herramientas prácticas frente a cobros indebidos o malos servicios.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-gray-50 border border-gray-100 rounded-sm shadow-md hover:shadow-xl transition-shadow group">
+                    <div class="relative h-56 w-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Análisis de Recibos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute -bottom-5 right-6 w-12 h-12 bg-gold flex items-center justify-center text-white shadow-lg z-10">
+                            <i class="fa-solid fa-file-invoice text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-10">
+                        <h3 class="text-xl font-bold text-navy mb-3">Análisis de Recibos</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Sube una foto de tu recibo. El sistema detectará cobros indebidos, lecturas anómalas y verificará si se aplican los pliegos tarifarios correctos.
+                        </p>
+                        <button onclick="toggleChat()" class="text-gold font-semibold flex items-center hover:text-gold-dark">Saber más <i class="fa-solid fa-arrow-right ml-2 text-sm"></i></button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-100 rounded-sm shadow-md hover:shadow-xl transition-shadow group">
+                    <div class="relative h-56 w-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Redacción de Escritos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute -bottom-5 right-6 w-12 h-12 bg-gold flex items-center justify-center text-white shadow-lg z-10">
+                            <i class="fa-solid fa-pen-nib text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-10">
+                        <h3 class="text-xl font-bold text-navy mb-3">Redacción de Reclamos</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Genera automáticamente formatos de reclamo, apelaciones y quejas formales estructurados según las directivas de OSINERGMIN, SUNASS o OSIPTEL.
+                        </p>
+                        <button onclick="toggleChat()" class="text-gold font-semibold flex items-center hover:text-gold-dark">Saber más <i class="fa-solid fa-arrow-right ml-2 text-sm"></i></button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-100 rounded-sm shadow-md hover:shadow-xl transition-shadow group">
+                    <div class="relative h-56 w-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Trámites Regulatorios" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute -bottom-5 right-6 w-12 h-12 bg-gold flex items-center justify-center text-white shadow-lg z-10">
+                            <i class="fa-solid fa-building-columns text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-10">
+                        <h3 class="text-xl font-bold text-navy mb-3">Guía de Trámites</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Pasos claros y precisos sobre qué hacer ante cortes injustificados, problemas de calidad en el servicio o barreras burocráticas injustas.
+                        </p>
+                        <button onclick="toggleChat()" class="text-gold font-semibold flex items-center hover:text-gold-dark">Saber más <i class="fa-solid fa-arrow-right ml-2 text-sm"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-gray-100 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Preguntas <span class="text-gold">Frecuentes</span></h2>
+                <div class="w-20 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="text-gray-600 text-lg">Aclara tus principales dudas sobre servicios y derechos al consumidor.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <details class="bg-white border border-gray-200 rounded-lg group cursor-pointer shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-navy hover:text-gold transition-colors">
+                        <span class="font-bold">¿Qué hago si me cortan la luz injustificadamente?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0 border-t border-gray-100 leading-relaxed">
+                        Si consideras que el corte es injustificado, debes presentar inmediatamente un reclamo ante la empresa concesionaria (Enel, Luz del Sur, etc.). Tienen la obligación de no condicionar el registro de tu reclamo al pago de la deuda en disputa. Puedes usar nuestro chat para redactar el formato.
+                    </div>
+                </details>
+                
+                <!-- FAQ Item 2 -->
+                <details class="bg-white border border-gray-200 rounded-lg group cursor-pointer shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-navy hover:text-gold transition-colors">
+                        <span class="font-bold">¿Cómo reclamo un cobro excesivo en mi recibo de agua o luz?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0 border-t border-gray-100 leading-relaxed">
+                        Tienes derecho a reclamar por consumo facturado dentro de los 2 meses posteriores al vencimiento. No estás obligado a pagar el monto reclamado mientras dure el procedimiento. Si pagaste y te dan la razón, la empresa deberá devolverte el dinero con intereses.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="bg-white border border-gray-200 rounded-lg group cursor-pointer shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-navy hover:text-gold transition-colors">
+                        <span class="font-bold">Mi internet está lento o se corta a cada rato, ¿qué puedo exigir?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0 border-t border-gray-100 leading-relaxed">
+                        Según OSIPTEL, la operadora debe garantizarte un porcentaje mínimo de la velocidad contratada (usualmente el 70% en conexiones fijas). Si sufres cortes prolongados, puedes solicitar la devolución proporcional de la tarifa por los días sin servicio a través de un reclamo por "calidad e idoneidad del servicio".
+                    </div>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details class="bg-white border border-gray-200 rounded-lg group cursor-pointer shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-navy hover:text-gold transition-colors">
+                        <span class="font-bold">¿Qué es el Código de Protección y Defensa del Consumidor?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 p-5 pt-0 border-t border-gray-100 leading-relaxed">
+                        Es la Ley N° 29571 que establece los derechos y obligaciones de consumidores y proveedores en Perú. Protege contra métodos comerciales abusivos y garantiza información clara. INDECOPI es el ente encargado de velar por su cumplimiento. <a href="https://www.indecopi.gob.pe/documents/20182/143803/C%C3%B3digoDProtecci%C3%B3nyDefensaDelConsumidor.pdf" target="_blank" class="text-gold font-semibold underline hover:text-gold-dark">Léelo completo aquí.</a>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy pt-12 pb-6 border-t-4 border-gold text-center sm:text-left">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+                <div class="mb-4 md:mb-0">
+                    <span class="font-bold text-xl text-white tracking-tight">Regula<span class="text-gold">Derecho</span></span>
+                    <p class="mt-2 text-xs">Protegiendo los derechos ciudadanos mediante tecnología legal.</p>
+                </div>
+                <div>&copy; 2026 RegulaDerecho. Todos los derechos reservados.</div>
+             </div>
+        </div>
+    </footer>
+
+    <div id="chatbot-container" class="fixed bottom-6 right-6 w-[380px] max-w-[calc(100vw-2rem)] h-[550px] max-h-[calc(100vh-2rem)] bg-white rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.2)] flex flex-col z-[100] transform transition-transform duration-300 scale-0 origin-bottom-right" style="display: none;">
+        
+        <!-- Header (Draggable) -->
+        <div id="chatbot-header" class="bg-navy text-white rounded-t-lg p-4 cursor-move flex justify-between items-center flex-shrink-0 select-none">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center shadow-inner">
+                        <i class="fa-solid fa-file-invoice-dollar text-xl text-navy"></i>
+                    </div>
+                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-navy rounded-full"></div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm leading-tight">Asesor Legal</h4>
+                    <p class="text-[10px] text-gray-300">RegulaDerecho Online</p>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button title="Descargar Código" onclick="window.open('https://www.indecopi.gob.pe/documents/20182/143803/C%C3%B3digoDProtecci%C3%B3nyDefensaDelConsumidor.pdf', '_blank')" class="hover:text-gold transition-colors"><i class="fa-solid fa-book text-sm"></i></button>
+                <button onclick="toggleChat()" title="Cerrar" class="hover:text-red-400 transition-colors ml-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div id="chat-messages" class="flex-1 bg-gray-50 overflow-y-auto p-4 flex flex-col gap-4 chat-scroll">
+            
+            <!-- Bot Message with Interactive Options -->
+            <div class="flex gap-3 max-w-[90%]">
+                <div class="w-10 h-10 rounded-full bg-gold flex-shrink-0 flex items-center justify-center mt-1 p-1">
+                    <!-- Custom SVG: Friendly Code Book Avatar -->
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-navy" fill="currentColor">
+                        <path d="M20,15 L80,15 C85,15 90,20 90,25 L90,85 C90,90 85,95 80,95 L20,95 C15,95 10,90 10,85 L10,25 C10,20 15,15 20,15 Z" fill="#c09c64" />
+                        <path d="M50,15 L50,95" stroke="#111827" stroke-width="4" />
+                        <!-- Eyes -->
+                        <circle cx="35" cy="45" r="5" fill="#111827" />
+                        <circle cx="65" cy="45" r="5" fill="#111827" />
+                        <!-- Friendly Smile -->
+                        <path d="M35,60 Q50,75 65,60" stroke="#111827" stroke-width="4" fill="transparent" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div class="bg-white border border-gray-200 text-gray-800 text-sm p-3 rounded-2xl rounded-tl-sm shadow-sm">
+                    ¡Hola! Soy el avatar del <strong>Código de Protección al Consumidor</strong>. Estoy aquí para ayudarte a defender tus derechos en servicios públicos (Perú). <br><br>
+                    ¿En qué área necesitas orientación hoy? Puedes seleccionar una opción, escribirme o subir foto de tu recibo:
+                    
+                    <div class="mt-3 flex flex-col gap-2">
+                        <button onclick="sendQuickReply('Necesito ayuda con mi servicio de Energía y Luz')" class="text-left px-3 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded border border-blue-200 text-xs font-semibold transition-colors">⚡ Problemas con Luz / Electricidad</button>
+                        <button onclick="sendQuickReply('Necesito ayuda con mi servicio de Agua y Saneamiento')" class="text-left px-3 py-2 bg-cyan-50 text-cyan-700 hover:bg-cyan-100 rounded border border-cyan-200 text-xs font-semibold transition-colors">💧 Problemas con Agua</button>
+                        <button onclick="sendQuickReply('Necesito ayuda con mi servicio de Telecomunicaciones')" class="text-left px-3 py-2 bg-purple-50 text-purple-700 hover:bg-purple-100 rounded border border-purple-200 text-xs font-semibold transition-colors">📱 Telefonía o Internet</button>
+                        <button onclick="sendQuickReply('Quiero denunciar a una empresa por mal servicio')" class="text-left px-3 py-2 bg-red-50 text-red-700 hover:bg-red-100 rounded border border-red-200 text-xs font-semibold transition-colors">⚖️ Otro / Denuncia Indecopi</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Image Preview Area -->
+        <div id="image-preview-container" class="hidden bg-gray-100 border-t p-2 relative flex-shrink-0">
+            <img id="image-preview" src="" alt="Preview" class="h-16 w-auto rounded border shadow-sm">
+            <button onclick="removeImage()" class="absolute top-1 left-16 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 bg-white border-t border-gray-200 rounded-b-lg flex gap-2 items-end flex-shrink-0">
+            <input type="file" id="file-upload" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
+            
+            <button onclick="document.getElementById('file-upload').click()" class="text-gray-400 hover:text-gold transition-colors p-2 flex-shrink-0" title="Adjuntar recibo o factura">
+                <i class="fa-solid fa-paperclip text-lg"></i>
+            </button>
+            
+            <textarea id="chat-input" rows="1" class="w-full bg-gray-50 border border-gray-200 text-sm rounded-xl px-3 py-2 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold resize-none chat-scroll" placeholder="Describe tu reclamo o sube tu recibo..." onkeydown="handleEnter(event)"></textarea>
+            
+            <button onclick="sendMessage()" class="bg-gold hover:bg-gold-dark text-white rounded-full w-9 h-9 flex items-center justify-center flex-shrink-0 transition-colors shadow-md">
+                <i class="fa-solid fa-paper-plane text-sm ml-[-2px]"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let chatOpen = false;
+        let selectedImage = null;
+
+        // Avatar SVG template for bot messages
+        const botAvatarSVG = `
+            <svg viewBox="0 0 100 100" class="w-full h-full text-navy" fill="currentColor">
+                <path d="M20,15 L80,15 C85,15 90,20 90,25 L90,85 C90,90 85,95 80,95 L20,95 C15,95 10,90 10,85 L10,25 C10,20 15,15 20,15 Z" fill="#c09c64" />
+                <path d="M50,15 L50,95" stroke="#111827" stroke-width="4" />
+                <circle cx="35" cy="45" r="5" fill="#111827" />
+                <circle cx="65" cy="45" r="5" fill="#111827" />
+                <path d="M35,60 Q50,75 65,60" stroke="#111827" stroke-width="4" fill="transparent" stroke-linecap="round" />
+            </svg>
+        `;
+
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatbot-container');
+            if (chatOpen) {
+                chatContainer.classList.remove('scale-100');
+                chatContainer.classList.add('scale-0');
+                setTimeout(() => { chatContainer.style.display = 'none'; }, 300);
+            } else {
+                chatContainer.style.display = 'flex';
+                if(chatContainer.style.top === '' && chatContainer.style.bottom === '') {
+                    chatContainer.style.bottom = '24px';
+                    chatContainer.style.right = '24px';
+                }
+                setTimeout(() => { 
+                    chatContainer.classList.remove('scale-0');
+                    chatContainer.classList.add('scale-100');
+                    document.getElementById('chat-input').focus();
+                }, 10);
+            }
+            chatOpen = !chatOpen;
+        }
+
+        // Functional linking from Grid
+        function triggerChatCategory(category) {
+            if(!chatOpen) toggleChat();
+            setTimeout(() => {
+                sendQuickReply(`Necesito ayuda con mi servicio de ${category}`);
+            }, 400);
+        }
+
+        // Dragging Logic
+        const header = document.getElementById('chatbot-header');
+        const chatWindow = document.getElementById('chatbot-container');
+        let isDragging = false;
+        let initialX; let initialY; let xOffset = 0; let yOffset = 0;
+
+        header.addEventListener('mousedown', dragStart);
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('mousemove', drag);
+
+        function dragStart(e) {
+            if (e.target === header || header.contains(e.target)) {
+                // Ensure we handle clicks on buttons inside header correctly
+                if(e.target.tagName.toLowerCase() === 'button' || e.target.tagName.toLowerCase() === 'i') return;
+                
+                initialX = e.clientX;
+                initialY = e.clientY;
+                isDragging = true;
+                chatWindow.style.transition = 'none'; 
+                
+                // Convert bottom/right to fixed top/left for dragging
+                const rect = chatWindow.getBoundingClientRect();
+                chatWindow.style.bottom = 'auto';
+                chatWindow.style.right = 'auto';
+                chatWindow.style.top = rect.top + 'px';
+                chatWindow.style.left = rect.left + 'px';
+            }
+        }
+
+        function dragEnd(e) {
+            isDragging = false;
+            chatWindow.style.transition = 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)';
+        }
+
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                const currentX = e.clientX - initialX;
+                const currentY = e.clientY - initialY;
+
+                const rect = chatWindow.getBoundingClientRect();
+                chatWindow.style.top = (rect.top + currentY) + 'px';
+                chatWindow.style.left = (rect.left + currentX) + 'px';
+                
+                initialX = e.clientX;
+                initialY = e.clientY;
+            }
+        }
+
+        // Image Attachment
+        function handleImageSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedImage = e.target.result;
+                    document.getElementById('image-preview').src = selectedImage;
+                    document.getElementById('image-preview-container').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeImage() {
+            selectedImage = null;
+            document.getElementById('file-upload').value = '';
+            document.getElementById('image-preview-container').classList.add('hidden');
+            document.getElementById('image-preview').src = '';
+        }
+
+        // Messaging
+        function handleEnter(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function sendQuickReply(text) {
+            document.getElementById('chat-input').value = text;
+            sendMessage();
+        }
+
+        function appendMessage(text, isUser, imgSrc = null) {
+            const chatMessages = document.getElementById('chat-messages');
+            const msgDiv = document.createElement('div');
+            
+            if (isUser) {
+                msgDiv.className = "flex gap-3 max-w-[90%] self-end justify-end";
+                let contentHTML = `<div class="bg-navy text-white text-sm p-3 rounded-2xl rounded-tr-sm shadow-sm">`;
+                if (imgSrc) {
+                    contentHTML += `<img src="${imgSrc}" class="w-full max-w-[150px] rounded mb-2 border border-navy-light">`;
+                }
+                contentHTML += `${text}</div>`;
+                msgDiv.innerHTML = contentHTML;
+            } else {
+                msgDiv.className = "flex gap-3 max-w-[90%]";
+                msgDiv.innerHTML = `
+                    <div class="w-10 h-10 rounded-full bg-gold flex-shrink-0 flex items-center justify-center mt-1 p-1">
+                        ${botAvatarSVG}
+                    </div>
+                    <div class="bg-white border border-gray-200 text-gray-800 text-sm p-3 rounded-2xl rounded-tl-sm shadow-sm leading-relaxed">
+                        ${text}
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chat-messages');
+            const indicatorDiv = document.createElement('div');
+            indicatorDiv.id = "typing-indicator";
+            indicatorDiv.className = "flex gap-3 max-w-[85%]";
+            indicatorDiv.innerHTML = `
+                <div class="w-10 h-10 rounded-full bg-gold flex-shrink-0 flex items-center justify-center mt-1 p-1">
+                    ${botAvatarSVG}
+                </div>
+                <div class="bg-white border border-gray-200 text-gray-500 text-sm p-3 rounded-2xl rounded-tl-sm shadow-sm flex items-center gap-1">
+                    <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                </div>
+            `;
+            chatMessages.appendChild(indicatorDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        async function sendMessage() {
+            const inputField = document.getElementById('chat-input');
+            const text = inputField.value.trim();
+            const currentImg = selectedImage;
+            
+            if (text === '' && !currentImg) return;
+
+            appendMessage(text, true, currentImg);
+            
+            inputField.value = '';
+            inputField.style.height = 'auto';
+            removeImage();
+
+            showTypingIndicator();
+
+            await callRegulatoryMock(text, currentImg);
+        }
+
+        // Mock Logic handling Peruvian regulatory framework
+        async function callRegulatoryMock(prompt, imageBase64) {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            removeTypingIndicator();
+            
+            let response = "";
+            const lowerPrompt = prompt.toLowerCase();
+
+            if (imageBase64) {
+                response = "He analizado el recibo/factura. Al revisarlo bajo las normativas tarifarias, parece ser un recibo de servicios. Si notas un cobro por conceptos no solicitados o lecturas muy por encima de tu promedio histórico, tienes derecho a iniciar un <strong>Reclamo por Cobro Excesivo</strong>. La empresa no podrá cortarte el servicio por la deuda reclamada mientras el trámite esté en curso. ¿Deseas que redacte el formato para presentar el reclamo?";
+            } else if (lowerPrompt.includes("luz") || lowerPrompt.includes("energía")) {
+                response = "Entendido, tienes un problema con el servicio eléctrico. El ente regulador es <strong>OSINERGMIN</strong>. Si se trata de un corte intempestivo, daños a tus artefactos por alzas de tensión, o cobros indebidos, puedes presentar el formato 2 de reclamo en tu concesionaria. ¿Qué situación específica presentas?";
+            } else if (lowerPrompt.includes("agua")) {
+                response = "Comprendo. Para problemas de agua y alcantarillado, el ente regulador es <strong>SUNASS</strong>. Si te están facturando sin tener medidor o si el consumo es irreal, debes interponer un reclamo por \"Consumo Atípico\" ante tu EPS (como Sedapal). Tienen un plazo máximo para responderte. ¿Deseas armar el documento de reclamo?";
+            } else if (lowerPrompt.includes("telecomunicaciones") || lowerPrompt.includes("internet") || lowerPrompt.includes("celular")) {
+                response = "Para servicios de telefonía e internet, interviene <strong>OSIPTEL</strong>. Los reclamos más comunes son por: calidad de servicio (internet lento), facturación incorrecta o baja injustificada del servicio. Tienes derecho a solicitar la baja de tu servicio en cualquier momento sin penalidad (salvo contrato de equipos). ¿Sobre qué es tu reclamo?";
+            } else if (lowerPrompt.includes("denunciar") || lowerPrompt.includes("indecopi") || lowerPrompt.includes("consumidor")) {
+                response = "Si la empresa ha cometido una infracción al <strong>Código de Protección al Consumidor</strong> (ej: publicidad engañosa, maltrato, cobros no autorizados en tarjetas), podemos presentar una denuncia ante el <strong>INDECOPI</strong>. ¿Quieres que te guíe para hacer un reclamo en el Libro de Reclamaciones o una denuncia directa?";
+            } else {
+                response = "De acuerdo. Como tu asesor legal basado en la normativa peruana, te ayudaré a defender tus derechos. Para ser más preciso, indícame: ¿De qué servicio (agua, luz, teléfono, banco) se trata y cuál es el problema principal?";
+            }
+
+            appendMessage(response, false);
+        }
+
+        // Textarea auto-resize
+        const tx = document.getElementById('chat-input');
+        tx.setAttribute('style', 'height:' + (tx.scrollHeight) + 'px;overflow-y:hidden;');
+        tx.addEventListener("input", OnInput, false);
+        function OnInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            if(this.value === '') this.style.height = 'auto';
+        }
+    </script>
+</body>
+</html>
